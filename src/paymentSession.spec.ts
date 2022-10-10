@@ -6,8 +6,8 @@ import { createPaymentSession } from './paymentSession'
 import * as webSocket from './webSocket'
 import {
   mockAPIHost,
-  mockAcceptNanoPayment,
-  mockVerifiedAcceptNanoPayment,
+  mockAcceptBtcoPayment,
+  mockVerifiedAcceptBtcoPayment,
   clearDOM,
 } from './test-utils'
 
@@ -18,7 +18,7 @@ describe('createPaymentSession', () => {
     debug: false,
   }
 
-  const { token, amount, currency } = mockAcceptNanoPayment
+  const { token, amount, currency } = mockAcceptBtcoPayment
   const mock = new MockAdapter(axios)
 
   afterEach(() => {
@@ -36,16 +36,16 @@ describe('createPaymentSession', () => {
     it('dispatches success event once the payment is verified', done => {
       mock
         .onPost(`https://${mockAPIHost}/api/pay`)
-        .reply(200, mockAcceptNanoPayment)
+        .reply(200, mockAcceptBtcoPayment)
 
       mock
         .onGet(`https://${mockAPIHost}/api/verify`)
-        .reply(200, mockVerifiedAcceptNanoPayment)
+        .reply(200, mockVerifiedAcceptBtcoPayment)
 
       const paymentSession = createPaymentSession(sessionConfig)
 
       paymentSession.on('end', (_error, payment) => {
-        expect(payment).toEqual(mockVerifiedAcceptNanoPayment)
+        expect(payment).toEqual(mockVerifiedAcceptBtcoPayment)
         done()
       })
 
@@ -63,12 +63,12 @@ describe('createPaymentSession', () => {
     it('dispatches success event once the payment is verified', done => {
       mock
         .onGet(`https://${mockAPIHost}/api/verify`)
-        .reply(200, mockVerifiedAcceptNanoPayment)
+        .reply(200, mockVerifiedAcceptBtcoPayment)
 
       const paymentSession = createPaymentSession(sessionConfig)
 
       paymentSession.on('end', (_error, payment) => {
-        expect(payment).toEqual(mockVerifiedAcceptNanoPayment)
+        expect(payment).toEqual(mockVerifiedAcceptBtcoPayment)
         done()
       })
 
@@ -84,19 +84,19 @@ describe('createPaymentSession', () => {
       const wss = new Server('wss://localhost:8080')
       wss.on('connection', server => {
         setTimeout(() => {
-          server.send(JSON.stringify(mockVerifiedAcceptNanoPayment))
+          server.send(JSON.stringify(mockVerifiedAcceptBtcoPayment))
           server.close()
         }, sessionConfig.pollInterval * 2)
       })
 
       mock
         .onGet(`https://${mockAPIHost}/api/verify`)
-        .reply(200, mockAcceptNanoPayment)
+        .reply(200, mockAcceptBtcoPayment)
 
       const paymentSession = createPaymentSession(sessionConfig)
 
       paymentSession.on('end', (_error, payment) => {
-        expect(payment).toEqual(mockVerifiedAcceptNanoPayment)
+        expect(payment).toEqual(mockVerifiedAcceptBtcoPayment)
         done()
       })
 
@@ -106,7 +106,7 @@ describe('createPaymentSession', () => {
     it('dispatches cancel event if close button is clicked during the verification', done => {
       mock
         .onGet(`https://${mockAPIHost}/api/verify`)
-        .reply(200, mockAcceptNanoPayment)
+        .reply(200, mockAcceptBtcoPayment)
 
       const paymentSession = createPaymentSession(sessionConfig)
 

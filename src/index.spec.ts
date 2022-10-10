@@ -1,12 +1,12 @@
-import * as acceptNano from './index'
+import * as acceptBtco from './index'
 
-describe('acceptNano', () => {
+describe('acceptBtco', () => {
   it('exposes the snapshotted API', () => {
-    expect(acceptNano).toMatchInlineSnapshot(`
+    expect(acceptBtco).toMatchInlineSnapshot(`
       Object {
         "createSession": [Function],
-        "isAcceptNanoPayment": [Function],
-        "isVerifiedAcceptNanoPayment": [Function],
+        "isAcceptBtcoPayment": [Function],
+        "isVerifiedAcceptBtcoPayment": [Function],
       }
     `)
   })

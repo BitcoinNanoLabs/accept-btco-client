@@ -13,15 +13,15 @@ const spinnerStyle = `
   border-radius: 50%;
   position: relative;
   text-indent: -9999em;
-  -webkit-animation: accept-nano-spinner-animation 1.1s infinite ease;
-  animation: accept-nano-spinner-animation 1.1s infinite ease;
+  -webkit-animation: accept-btco-spinner-animation 1.1s infinite ease;
+  animation: accept-btco-spinner-animation 1.1s infinite ease;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
 `
 
 const spinnerCSS = `
-  @-webkit-keyframes accept-nano-spinner-animation {
+  @-webkit-keyframes accept-btco-spinner-animation {
     0%,
     100% {
       box-shadow: 0em -2.6em 0em 0em #ffffff, 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.5), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7);
@@ -49,7 +49,7 @@ const spinnerCSS = `
     }
   }
 
-  @keyframes accept-nano-spinner-animation {
+  @keyframes accept-btco-spinner-animation {
     0%,
     100% {
       box-shadow: 0em -2.6em 0em 0em #ffffff, 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.5), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7);

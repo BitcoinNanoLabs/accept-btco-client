@@ -6,22 +6,22 @@ export type PaymentError =
   | { reason: 'SESSION_EXPIRED' }
   | { reason: 'USER_TERMINATED' }
 
-export type NanoAccount = string
-export type AcceptNanoPaymentToken = string
-export type AcceptNanoCurrency = 'NANO' | 'USD'
+export type BtcoAccount = string
+export type AcceptBtcoPaymentToken = string
+export type AcceptBtcoCurrency = 'BITCOINNANO' | 'USD'
 
-export type CreateAcceptNanoPaymentParams = {
+export type CreateAcceptBtcoPaymentParams = {
   amount: StringifiedNumber
-  currency: AcceptNanoCurrency
+  currency: AcceptBtcoCurrency
   state?: StringifiedObject
 }
 
-export interface AcceptNanoPayment {
-  token: AcceptNanoPaymentToken
-  account: NanoAccount
+export interface AcceptBtcoPayment {
+  token: AcceptBtcoPaymentToken
+  account: BtcoAccount
   amount: StringifiedNumber
   amountInCurrency: StringifiedNumber
-  currency: AcceptNanoCurrency
+  currency: AcceptBtcoCurrency
   balance: StringifiedNumber
   subPayments: Record<string, unknown>
   remainingSeconds: number
@@ -30,9 +30,9 @@ export interface AcceptNanoPayment {
   merchantNotified: boolean
 }
 
-export const isAcceptNanoPayment = (
+export const isAcceptBtcoPayment = (
   input: unknown,
-): input is AcceptNanoPayment => {
+): input is AcceptBtcoPayment => {
   if (typeof input !== 'object' || !input) {
     return false
   }
@@ -41,5 +41,5 @@ export const isAcceptNanoPayment = (
   return Boolean(record.token && record.account && record.currency)
 }
 
-export const isVerifiedAcceptNanoPayment = (input: unknown) =>
-  isAcceptNanoPayment(input) && input.merchantNotified
+export const isVerifiedAcceptBtcoPayment = (input: unknown) =>
+  isAcceptBtcoPayment(input) && input.merchantNotified

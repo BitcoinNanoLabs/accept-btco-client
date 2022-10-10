@@ -1,46 +1,46 @@
-# accept-nano-client
+# accept-btco-client
 
-[![Build Status](https://travis-ci.org/accept-nano/accept-nano-client.svg?branch=master)](https://travis-ci.org/accept-nano/accept-nano-client)
-[![Coverage Status](https://coveralls.io/repos/github/accept-nano/accept-nano-client/badge.svg?branch=master)](https://coveralls.io/github/accept-nano/accept-nano-client?branch=master)
-![npm (scoped)](https://img.shields.io/npm/v/@accept-nano/client)
-![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@accept-nano/client)
-![GitHub](https://img.shields.io/github/license/accept-nano/accept-nano-client)
+[![Build Status](https://travis-ci.org/accept-btco/accept-btco-client.svg?branch=master)](https://travis-ci.org/accept-btco/accept-btco-client)
+[![Coverage Status](https://coveralls.io/repos/github/accept-btco/accept-btco-client/badge.svg?branch=master)](https://coveralls.io/github/accept-btco/accept-btco-client?branch=master)
+![npm (scoped)](https://img.shields.io/npm/v/accept-btco)
+![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/accept-btco)
+![GitHub](https://img.shields.io/github/license/accept-btco/accept-btco-client)
 
-Payment gateway for [NANO](https://nano.org)
+Payment gateway for [NANO](https://btco.org)
 
-_accept-nano-client_ is a JavaScript package that helps you to communicate with [_accept-nano_](https://github.com/accept-nano/accept-nano) for receiving NANO payments easily in your client-side applications.
+_accept-btco-client_ is a JavaScript package that helps you to communicate with [_accept-btco_](https://github.com/accept-btco/accept-btco) for receiving NANO payments easily in your client-side applications.
 
 ## Installation
 
 ### via NPM
 
 ```bash
-npm install @accept-nano/client
+npm install accept-btco
 
-yarn add @accept-nano/client
+yarn add accept-btco
 ```
 
 #### ES Modules / TypeScript
 
 ```ts
-import * as acceptNano from '@accept-nano/client'
+import * as acceptBtco from 'accept-btco'
 ```
 
 #### CommonJS
 
 ```ts
-const acceptNano = require('@accept-nano/client')
+const acceptBtco = require('accept-btco')
 ```
 
 ### Directly in Browser, as a UMD module
 
-After the _accept-nano-client_ script is loaded there will be a global variable called _acceptNano_, which you can access via `window.acceptNano`
+After the _accept-btco-client_ script is loaded there will be a global variable called _acceptBtco_, which you can access via `window.acceptBtco`
 
 ```HTML
 <html>
   <head>
     ...
-    <script src="https://unpkg.com/@accept-nano/client@2"></script>
+    <script src="https://unpkg.com/accept-btco@2"></script>
   </head>
   ...
 </html>
@@ -60,14 +60,14 @@ type CreateSessionParams = {
   debug?: boolean // enables debug mode and prints some useful stuff to console
 }
 
-const session = acceptNano.createSession({
-  apiHost: 'accept-nano-demo.put.io',
+const session = acceptBtco.createSession({
+  apiHost: 'accept-btco-demo.put.io',
 })
 
 // 2- register event listeners to shape-up your logic based on session events.
 type PaymentSessionEvents = {
   start: () => void
-  end: (error: PaymentError | null, payment: AcceptNanoPayment | null) => void
+  end: (error: PaymentError | null, payment: AcceptBtcoPayment | null) => void
 }
 
 session.on('start', () => {
@@ -92,9 +92,9 @@ After creating your session and attaching the event listeners, you can follow on
 
 #### Option 1: Create a Payment Through Client
 
-If you want to create and verify an _accept-nano_ payment in your client application, you can use this option.
+If you want to create and verify an _accept-btco_ payment in your client application, you can use this option.
 
-After the payment is created, _accept-nano-client_ will automatically proceed to the verification step.
+After the payment is created, _accept-btco-client_ will automatically proceed to the verification step.
 
 ```ts
 type CreatePaymentParams = {
@@ -112,7 +112,7 @@ session.createPayment({
 
 #### Option 2: Verify a Payment Through Client
 
-If you create an _accept-nano_ payment in another context (such as your application's backend), you can use this option to perform the verification in your client application.
+If you create an _accept-btco_ payment in another context (such as your application's backend), you can use this option to perform the verification in your client application.
 
 ```ts
 type VerifyPaymentParams = {
@@ -124,15 +124,15 @@ session.verifyPayment({ token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' })
 
 ## Contributing
 
-- Please [open an issue](https://github.com/accept-nano/accept-nano-client/issues/new) if you have a question or suggestion.
+- Please [open an issue](https://github.com/accept-btco/accept-btco-client/issues/new) if you have a question or suggestion.
 - Don't create a PR before discussing it first.
 
-## Who is using _accept-nano-client_ in production?
+## Who is using _accept-btco-client_ in production?
 
 - [Put.io](https://put.io)
-- [My Nano Ninja](https://mynano.ninja)
+- [My Btco Ninja](https://mybtco.ninja)
 
-Please send a PR to list your site if _accept-nano_ is helping you to receive NANO payments.
+Please send a PR to list your site if _accept-btco_ is helping you to receive NANO payments.
 
 ## Sponsors
 

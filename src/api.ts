@@ -1,8 +1,8 @@
 import axios from 'axios'
 import {
-  AcceptNanoPayment,
-  AcceptNanoPaymentToken,
-  CreateAcceptNanoPaymentParams,
+  AcceptBtcoPayment,
+  AcceptBtcoPaymentToken,
+  CreateAcceptBtcoPaymentParams,
 } from './types'
 
 export const createAPI = ({ baseURL }: { baseURL: string }) => {
@@ -16,18 +16,18 @@ export const createAPI = ({ baseURL }: { baseURL: string }) => {
       amount,
       currency,
       state,
-    }: CreateAcceptNanoPaymentParams) => {
+    }: CreateAcceptBtcoPaymentParams) => {
       const form = new FormData()
 
       form.append('amount', amount)
       form.append('currency', currency)
       form.append('state', state || '')
 
-      return instance.post<AcceptNanoPayment>('/pay', form)
+      return instance.post<AcceptBtcoPayment>('/pay', form)
     },
 
-    fetchPayment: ({ token }: { token: AcceptNanoPaymentToken }) => {
-      return instance.get<AcceptNanoPayment>('/verify', {
+    fetchPayment: ({ token }: { token: AcceptBtcoPaymentToken }) => {
+      return instance.get<AcceptBtcoPayment>('/verify', {
         params: {
           token,
         },
@@ -36,4 +36,4 @@ export const createAPI = ({ baseURL }: { baseURL: string }) => {
   }
 }
 
-export type AcceptNanoAPI = ReturnType<typeof createAPI>
+export type AcceptBtcoAPI = ReturnType<typeof createAPI>

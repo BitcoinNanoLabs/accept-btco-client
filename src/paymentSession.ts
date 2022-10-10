@@ -1,8 +1,8 @@
 import { EventEmitter } from '@byungi/event-emitter'
 import {
-  AcceptNanoPayment,
-  AcceptNanoPaymentToken,
-  CreateAcceptNanoPaymentParams,
+  AcceptBtcoPayment,
+  AcceptBtcoPaymentToken,
+  CreateAcceptBtcoPaymentParams,
   PaymentError,
 } from './types'
 import { createAPI } from './api'
@@ -12,12 +12,12 @@ import { logger } from './logger'
 import {
   createWebSocket,
   createWebSocketURL,
-  AcceptNanoWebSocket,
+  AcceptBtcoWebSocket,
 } from './webSocket'
 
 type PaymentSessionEvents = {
   start: () => void
-  end: (error: PaymentError | null, payment: AcceptNanoPayment | null) => void
+  end: (error: PaymentError | null, payment: AcceptBtcoPayment | null) => void
 }
 
 type PaymentSessionConfig = {
@@ -36,7 +36,7 @@ export const createPaymentSession = ({
   const eventEmitter = new EventEmitter<PaymentSessionEvents>()
   const dom = createDOM()
   const api = createAPI({ baseURL: `https://${apiHost}/api` })
-  let ws: AcceptNanoWebSocket | undefined
+  let ws: AcceptBtcoWebSocket | undefined
 
   const paymentService = createPaymentService({ api, pollInterval })
     .onTransition(state => {
@@ -84,10 +84,10 @@ export const createPaymentSession = ({
 
   return {
     on: eventEmitter.once.bind(eventEmitter),
-    createPayment: (params: CreateAcceptNanoPaymentParams) => {
+    createPayment: (params: CreateAcceptBtcoPaymentParams) => {
       paymentService.send({ type: 'CREATE_PAYMENT', params })
     },
-    verifyPayment: ({ token }: { token: AcceptNanoPaymentToken }) => {
+    verifyPayment: ({ token }: { token: AcceptBtcoPaymentToken }) => {
       paymentService.send({ type: 'START_PAYMENT_VERIFICATION', token })
     },
   }

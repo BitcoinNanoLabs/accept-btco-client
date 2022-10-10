@@ -1,6 +1,6 @@
 import { el, setChildren, mount, unmount, setStyle } from 'redom'
 import { EventEmitter } from '@byungi/event-emitter'
-import { AcceptNanoPayment, PaymentError } from '../types'
+import { AcceptBtcoPayment, PaymentError } from '../types'
 import { containerStyle, bodyStyle, contentStyle, colors } from './style'
 import { createHeader } from './elements/header'
 import { createStatusBar } from './elements/statusBar'
@@ -20,8 +20,8 @@ export const createDOM = () => {
   const eventEmitter = new EventEmitter<DOMEvents>()
   const handleCloseButtonClick = () => eventEmitter.emit('close')
 
-  const container = el('div', { id: 'accept-nano', style: containerStyle })
-  const main = el('div', { id: 'accept-nano-body', style: bodyStyle })
+  const container = el('div', { id: 'accept-btco', style: containerStyle })
+  const main = el('div', { id: 'accept-btco-body', style: bodyStyle })
   const header = createHeader({ onClose: handleCloseButtonClick })
   const statusBar = createStatusBar()
   const content = el('div', { style: contentStyle })
@@ -57,7 +57,7 @@ export const createDOM = () => {
       setChildren(container, [createLoadingScene()])
     },
 
-    renderPayment: (payment: AcceptNanoPayment) => {
+    renderPayment: (payment: AcceptBtcoPayment) => {
       // @TODO: maybe create a new state machine for this?
       if (scene === 'payment') return
       scene = 'payment'

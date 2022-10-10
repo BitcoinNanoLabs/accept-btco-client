@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <script src="https://unpkg.com/@accept-nano/client@2"></script>
+  <script src="https://unpkg.com/accept-btco@2"></script>
   <style>
     body {
       background: #f7f7f7;
@@ -68,18 +68,18 @@
 
 <body>
   <main>
-    <h1>Accept Nano Demo</h1>
+    <h1>Accept Btco Demo</h1>
 
     <form id="paymentForm">
       <label>API Host</label>
-      <input type="text" name="apiHost" value="accept-nano-demo.put.io" />
+      <input type="text" name="apiHost" value="accept-btco-demo.put.io" />
 
       <label>Amount</label>
       <input type="text" name="amount" value="0.000001" />
 
       <label>Currency</label>
       <select name="currency">
-        <option value="XNO">NANO(XNO)</option>
+        <option value="XNO">BITCOINNANO(BTCO)</option>
         <option value="USD">USD</option>
       </select>
 
@@ -96,7 +96,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault()
 
-      const session = window.acceptNano.createSession({
+      const session = window.acceptBtco.createSession({
         apiHost: form.apiHost.value,
         debug: true
       })

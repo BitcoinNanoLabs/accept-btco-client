@@ -19,14 +19,14 @@ export const createFooter = () => {
   const footerLink = el(
     'a',
     {
-      href: 'https://accept-nano.com',
+      href: 'https://accept-btco.com',
       target: '_blank',
       style: `
       padding-left: 5px!important;
       color: #ccc!important;
     `,
     },
-    'accept-nano.com',
+    'accept-btco.com',
   )
 
   setChildren(footer, [footerSpan, footerLink])

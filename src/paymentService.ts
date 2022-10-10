@@ -6,29 +6,29 @@ import {
   DoneInvokeEvent,
   Sender,
 } from 'xstate'
-import { AcceptNanoAPI } from './api'
+import { AcceptBtcoAPI } from './api'
 import { delay } from './utils'
 import {
-  AcceptNanoPayment,
-  AcceptNanoPaymentToken,
-  CreateAcceptNanoPaymentParams,
+  AcceptBtcoPayment,
+  AcceptBtcoPaymentToken,
+  CreateAcceptBtcoPaymentParams,
   PaymentError,
-  isVerifiedAcceptNanoPayment,
+  isVerifiedAcceptBtcoPayment,
 } from './types'
 
 type PaymentContext = {
-  payment?: AcceptNanoPayment
+  payment?: AcceptBtcoPayment
   error?: PaymentError
 }
 
 type CreatePaymentEvent = {
   type: 'CREATE_PAYMENT'
-  params: CreateAcceptNanoPaymentParams
+  params: CreateAcceptBtcoPaymentParams
 }
 
 type StartPaymentVerificationEvent = {
   type: 'START_PAYMENT_VERIFICATION'
-  token: AcceptNanoPaymentToken
+  token: AcceptBtcoPaymentToken
 }
 
 type VerifyPaymentEvent = {
@@ -37,7 +37,7 @@ type VerifyPaymentEvent = {
 
 type PaymentVerifiedEvent = {
   type: 'PAYMENT_VERIFIED'
-  payment: AcceptNanoPayment
+  payment: AcceptBtcoPayment
 }
 
 type PaymentSessionExpiredEvent = {
@@ -71,11 +71,11 @@ type PaymentState =
     }
   | {
       value: 'verification'
-      context: PaymentContext & { payment: AcceptNanoPayment; error: undefined }
+      context: PaymentContext & { payment: AcceptBtcoPayment; error: undefined }
     }
   | {
       value: 'success'
-      context: PaymentContext & { payment: AcceptNanoPayment; error: undefined }
+      context: PaymentContext & { payment: AcceptBtcoPayment; error: undefined }
     }
   | {
       value: 'failure'
@@ -83,7 +83,7 @@ type PaymentState =
     }
 
 type PaymentServiceConfig = {
-  api: AcceptNanoAPI
+  api: AcceptBtcoAPI
   pollInterval: number
 }
 
@@ -93,7 +93,7 @@ export const createPaymentService = ({
 }: PaymentServiceConfig) => {
   const setPaymentData = assign<
     PaymentContext,
-    DoneInvokeEvent<AcceptNanoPayment>
+    DoneInvokeEvent<AcceptBtcoPayment>
   >({
     payment: (_, event) => event.data,
   })
@@ -175,10 +175,10 @@ export const createPaymentService = ({
           src: context => async (callback: Sender<PaymentEvent>) => {
             await delay(pollInterval)
 
-            const { token } = context.payment as AcceptNanoPayment
+            const { token } = context.payment as AcceptBtcoPayment
             const { data } = await api.fetchPayment({ token })
 
-            if (isVerifiedAcceptNanoPayment(data)) {
+            if (isVerifiedAcceptBtcoPayment(data)) {
               return callback({ type: 'PAYMENT_VERIFIED', payment: data })
             }
 

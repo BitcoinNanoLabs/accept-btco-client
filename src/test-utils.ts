@@ -1,8 +1,8 @@
-import { AcceptNanoPayment } from './types'
+import { AcceptBtcoPayment } from './types'
 
-export const mockAPIHost = 'accept-nano-demo.put.io'
+export const mockAPIHost = 'accept-btco-demo.bitcoinbtco.org'
 
-export const mockAcceptNanoPayment: AcceptNanoPayment = {
+export const mockAcceptBtcoPayment: AcceptBtcoPayment = {
   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
   account: 'nano_3c9pkkgdy5n8qkkrzj96ncjnpcbuj6ux3177wawn1wu5ynoejquumbffdxny',
   amount: '0.000001',
@@ -16,12 +16,12 @@ export const mockAcceptNanoPayment: AcceptNanoPayment = {
   merchantNotified: false,
 }
 
-export const mockVerifiedAcceptNanoPayment: AcceptNanoPayment = {
-  ...mockAcceptNanoPayment,
+export const mockVerifiedAcceptBtcoPayment: AcceptBtcoPayment = {
+  ...mockAcceptBtcoPayment,
   merchantNotified: true,
 }
 
-export const createMockAPIResponse = (payment = mockAcceptNanoPayment) => ({
+export const createMockAPIResponse = (payment = mockAcceptBtcoPayment) => ({
   status: 200,
   statusText: 'OK',
   headers: {},

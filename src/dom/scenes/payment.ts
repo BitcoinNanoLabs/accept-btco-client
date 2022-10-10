@@ -1,12 +1,12 @@
 import { el, setChildren } from 'redom'
 import Big from 'big.js'
 import QRCode from 'qrcode'
-import { AcceptNanoPayment } from '../../types'
+import { AcceptBtcoPayment } from '../../types'
 import { sharedStyles } from '../style'
 
 const multNANO = Big('1000000000000000000000000000000')
 
-const createAccountElements = (account: AcceptNanoPayment['account']) => {
+const createAccountElements = (account: AcceptBtcoPayment['account']) => {
   const accountHeader = el(
     'h5',
     { style: sharedStyles.infoHeader },
@@ -18,25 +18,25 @@ const createAccountElements = (account: AcceptNanoPayment['account']) => {
   return { accountHeader, accountText } as const
 }
 
-const createAmountElements = (amount: AcceptNanoPayment['amount']) => {
+const createAmountElements = (amount: AcceptBtcoPayment['amount']) => {
   const amountHeader = el('h5', { style: sharedStyles.infoHeader }, 'Amount')
-  const amountText = el('p', { style: sharedStyles.infoText }, `${amount} NANO`)
+  const amountText = el('p', { style: sharedStyles.infoText }, `${amount} BITCOINNAO`)
   return { amountHeader, amountText } as const
 }
 
-const createPaymentInfo = (payment: AcceptNanoPayment) => {
+const createPaymentInfo = (payment: AcceptBtcoPayment) => {
   const { accountHeader, accountText } = createAccountElements(payment.account)
   const { amountHeader, amountText } = createAmountElements(payment.amount)
   return el('div', [accountHeader, accountText, amountHeader, amountText])
 }
 
-const createQRCodeElements = (payment: AcceptNanoPayment) => {
+const createQRCodeElements = (payment: AcceptBtcoPayment) => {
   const amount_raw = Big(payment.amount)
     .times(multNANO)
     .toFixed()
     .toString()
 
-  const qrText = `nano:${payment.account}?amount=${amount_raw}`
+  const qrText = `btco:${payment.account}?amount=${amount_raw}`
 
   const qrCanvas = el('canvas', {
     style: `
@@ -60,7 +60,7 @@ const createQRCodeElements = (payment: AcceptNanoPayment) => {
   return { qrText, qrCanvas, qrContainer } as const
 }
 
-export const createPaymentScene = (payment: AcceptNanoPayment) =>
+export const createPaymentScene = (payment: AcceptBtcoPayment) =>
   new Promise<HTMLDivElement>(resolve => {
     const paymentInfo = createPaymentInfo(payment)
     const { qrText, qrCanvas, qrContainer } = createQRCodeElements(payment)
