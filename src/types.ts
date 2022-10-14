@@ -8,7 +8,7 @@ export type PaymentError =
 
 export type BtcoAccount = string
 export type AcceptBtcoPaymentToken = string
-export type AcceptBtcoCurrency = 'BITCOINNANO' | 'USD'
+export type AcceptBtcoCurrency = 'BTCO' | 'USD'
 
 export type CreateAcceptBtcoPaymentParams = {
   amount: StringifiedNumber

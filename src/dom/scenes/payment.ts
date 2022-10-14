@@ -21,7 +21,7 @@ const createAccountElements = (account: AcceptBtcoPayment['account']) => {
 const createAmountElements = (amount: AcceptBtcoPayment['amount']) => {
   const amountHeader = el('h5', { style: sharedStyles.infoHeader }, 'Amount')
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const amountText = el('p', { style: sharedStyles.infoText }, `${amount} BITCOINNAO`)
+  const amountText = el('p', { style: sharedStyles.infoText }, `${amount} BITCOIN NANO`)
   return { amountHeader, amountText } as const
 }
 
