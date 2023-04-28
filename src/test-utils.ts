@@ -1,13 +1,13 @@
 import { AcceptBtcoPayment } from './types'
 
-export const mockAPIHost = 'accept-btco-demo.bitcoinbtco.org'
+export const mockAPIHost = 'https://wallet.bitcoinnano.org'
 
 export const mockAcceptBtcoPayment: AcceptBtcoPayment = {
   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
   account: 'nano_3c9pkkgdy5n8qkkrzj96ncjnpcbuj6ux3177wawn1wu5ynoejquumbffdxny',
   amount: '0.000001',
   amountInCurrency: '0.000001',
-  currency: 'NANO',
+  currency: 'BTCO',
   balance: '0',
   subPayments: {},
   remainingSeconds: 14399,
