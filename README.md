@@ -1,7 +1,6 @@
 # accept-btco-client
 
 ![Build State and Publish](https://github.com/bitcoinnanolabs/accept-btco-client/actions/workflows/npm-publish.yml/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/accept-btco/accept-btco-client/badge.svg?branch=master)](https://coveralls.io/github/accept-btco/accept-btco-client?branch=master)
 ![npm (scoped)](https://img.shields.io/npm/v/accept-btco)
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/accept-btco)
 ![GitHub](https://img.shields.io/github/license/accept-btco/accept-btco-client)
